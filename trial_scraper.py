@@ -1,9 +1,5 @@
 import bs4 as bs
 import urllib.request
-import scrapy
-from pandas import read_csv
-from readability.readability import Document
-import time
 
 source = urllib.request.urlopen('https://www.newsnow.co.uk/h/Sport/Football/La+Liga/Real+Madrid/Transfer+News')
 soup = bs.BeautifulSoup(source, 'lxml')
@@ -18,7 +14,6 @@ for url in soup.find_all('a', class_="hll"):
     elif count>31:
         break
 
-print(urls)
 actual_url=[]
 for url1 in urls:
     source1=urllib.request.urlopen(url1)
@@ -26,7 +21,7 @@ for url1 in urls:
 
     for url in soup1.find_all('a'):
         actual_url+=[url.get('href')]
-print(actual_url)
+
 count1=0
 title=[]
 for url2 in actual_url:
